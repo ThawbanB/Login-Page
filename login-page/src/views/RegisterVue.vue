@@ -1,13 +1,12 @@
 <script setup>
-import {RouterLink ,RouterView} from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 </script>
-
 <script>
 export default {
   data() {
     return {
       isOpen: false,
-      password: ""
+      password: ''
     }
   }
 }
@@ -16,7 +15,7 @@ export default {
 <template>
   <div class="all">
     <section class="login">
-      <h1 class="mb-3">Se Connecter</h1>
+      <h1 class="mb-3">S'inscrire</h1>
       <div class="info">
         <div class="email">
           <label>Adresse e-mail</label>
@@ -26,7 +25,7 @@ export default {
           <label>Mot de passe</label>
           <div>
             <input v-show="!isOpen" type="password" v-model="password" />
-            <input v-show="isOpen" type="text" v-model="password">
+            <input v-show="isOpen" type="text" v-model="password" />
             <img
               v-show="!isOpen"
               @click="isOpen = !isOpen"
@@ -42,10 +41,10 @@ export default {
           </div>
         </div>
       </div>
-      <button class="btn btn-danger">Se connecter</button>
+      <button class="btn btn-danger">S'inscrire</button>
 
       <div class="imgs gap-2">
-        <p>Ou se connecter avec :</p>
+        <p>S'inscrire avec :</p>
         <div class="d-flex gap-2 justify-content-center">
           <img src="../assets/img/facebook.png" alt="" />
           <img src="../assets/img/google.png" alt="" />
@@ -54,13 +53,13 @@ export default {
       </div>
       <div class="inscription text-center">
         <p>
-          Vous n'avez toujours pas de compte ? <br />
-          <RouterLink to="/inscription"><span>Inscrit-toi !</span></RouterLink>
+          Vous avez déja un compte ? <br />
+          <RouterLink to="/"><span>Connectez-vous !</span></RouterLink>
         </p>
       </div>
     </section>
   </div>
-  <RouterView/>
+  <RouterView />
 </template>
 <style scoped>
 .all {
