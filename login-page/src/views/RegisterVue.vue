@@ -6,9 +6,28 @@ export default {
   data() {
     return {
       isOpen: false,
-      password: ''
+      email:'',
+      password: '',
+      connect: false,
+      disconnect: false
     }
-  }
+  },
+  methods: {
+    send: function() {
+      if(this.email != "" && this.password != ""){
+        this.connect = true
+        this.disconnect = false
+        this.email = ''
+        this.password = ''
+      }
+      else {
+        this.disconnect = true
+        this.connect = false
+        this.email = ''
+        this.password = ''
+      }
+    }
+  },
 }
 </script>
 
@@ -19,7 +38,7 @@ export default {
       <div class="info">
         <div class="email">
           <label>Adresse e-mail</label>
-          <input type="text" />
+          <input type="text" v-model="email" />
         </div>
         <div class="password">
           <label>Mot de passe</label>
@@ -41,14 +60,24 @@ export default {
           </div>
         </div>
       </div>
-      <button class="btn btn-danger">S'inscrire</button>
-
+      <div class="text-center">
+        <button class="btn btn-danger" @click="send()">S'inscrire</button>
+        <p style="color: green;" v-show="connect">Vous êtes inscrit</p>
+        <p style="color: red;" v-show="disconnect">Veuillez ressayez</p>
+      </div>
+      
       <div class="imgs gap-2">
         <p>S'inscrire avec :</p>
         <div class="d-flex gap-2 justify-content-center">
-          <img src="../assets/img/facebook.png" alt="" />
-          <img src="../assets/img/google.png" alt="" />
-          <img src="../assets/img/twitter.png" alt="" />
+            <a href="https://www.facebook.com/?locale=fr_FR"
+            ><img src="../assets/img/facebook.png" alt=""
+          /></a>
+          <a href="https://twitter.com/?lang=fr">
+            <img src="../assets/img/twitter.png" alt="" />
+          </a>
+          <a href="https://www.google.com/intl/fr/gmail/about/">
+            <img src="../assets/img/google.png" alt="" />
+          </a>
         </div>
       </div>
       <div class="inscription text-center">

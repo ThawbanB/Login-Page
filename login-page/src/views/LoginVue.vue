@@ -1,5 +1,5 @@
 <script setup>
-import {RouterLink ,RouterView} from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <script>
@@ -7,7 +7,25 @@ export default {
   data() {
     return {
       isOpen: false,
-      password: ""
+      email: '',
+      password: '',
+      connect: false,
+      disconnect: false
+    }
+  },
+  methods: {
+    send: function () {
+      if (this.email != '' && this.password != '') {
+        this.connect = true
+        this.disconnect = false
+        this.email = ''
+        this.password = ''
+      } else {
+        this.disconnect = true
+        this.connect = false
+        this.email = ''
+        this.password = ''
+      }
     }
   }
 }
@@ -19,14 +37,14 @@ export default {
       <h1 class="mb-3">Se Connecter</h1>
       <div class="info">
         <div class="email">
-          <label>Adresse e-mail</label>
-          <input type="text" />
+          <label>Adresse mail</label>
+          <input type="text" v-model="email" />
         </div>
         <div class="password">
           <label>Mot de passe</label>
           <div>
             <input v-show="!isOpen" type="password" v-model="password" />
-            <input v-show="isOpen" type="text" v-model="password">
+            <input v-show="isOpen" type="text" v-model="password" />
             <img
               v-show="!isOpen"
               @click="isOpen = !isOpen"
@@ -42,25 +60,35 @@ export default {
           </div>
         </div>
       </div>
-      <button class="btn btn-danger">Se connecter</button>
+      <div class="text-center">
+        <button class="btn btn-danger" @click="send()">Se connecter</button>
+        <p style="color: green" v-show="connect">Vous êtes connecté</p>
+        <p style="color: red" v-show="disconnect">Veuillez réessayez</p>
+      </div>
 
       <div class="imgs gap-2">
         <p>Ou se connecter avec :</p>
         <div class="d-flex gap-2 justify-content-center">
-          <img src="../assets/img/facebook.png" alt="" />
-          <img src="../assets/img/google.png" alt="" />
-          <img src="../assets/img/twitter.png" alt="" />
+          <a href="https://www.facebook.com/?locale=fr_FR"
+            ><img src="../assets/img/facebook.png" alt=""
+          /></a>
+          <a href="https://twitter.com/?lang=fr">
+            <img src="../assets/img/twitter.png" alt="" />
+          </a>
+          <a href="https://www.google.com/intl/fr/gmail/about/">
+            <img src="../assets/img/google.png" alt="" />
+          </a>
         </div>
       </div>
       <div class="inscription text-center">
         <p>
           Vous n'avez toujours pas de compte ? <br />
-          <RouterLink to="/inscription"><span>Inscrit-toi !</span></RouterLink>
+          <RouterLink to="/inscription"><span>Inscrivez-vous</span></RouterLink>
         </p>
       </div>
     </section>
   </div>
-  <RouterView/>
+  <RouterView />
 </template>
 <style scoped>
 .all {
